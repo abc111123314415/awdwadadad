@@ -1,4 +1,4 @@
-window.main = new (class {
+const main = new (class {
   constructor () {}
   init () {
     // websocket connection, inizialise mod (run render)
