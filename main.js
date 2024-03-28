@@ -40,12 +40,6 @@ const main = new (class {
             x: 0,
             y: 0
         };
-        this.screen = {
-            maxH: this.configs.maxScreenWidth,
-            maxW: this.configs.maxScreenWidth,
-            H: maxH,
-            W: maxW
-        };
         this.inGame = false;
         // GLOBAL FUNCTIONS
         this.findPlayerByID = (id) => {
@@ -621,6 +615,12 @@ const main = new (class {
             this.volcanoLocationY = 14400 - 320 - 120;
           }
         })();
+        this.screen = {
+            maxH: this.configs.maxScreenWidth,
+            maxW: this.configs.maxScreenWidth,
+            H: maxH,
+            W: maxW
+        };
         // GAMEOBJECT
         this.gameObject = class {
           constructor (sid) {
