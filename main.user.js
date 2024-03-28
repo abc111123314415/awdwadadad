@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name         Mod test
+// @version      none
+// @author       krovin & jetx
+// @match        *://*.mohmoh.eu/*
+// @match        *://*.mohmohsg.onrender.com/*
+// @grant        none
+// @description  sookablak
+// ==/UserScript==
+
 const main = new (class {
   constructor () {
     this.connected = false;
@@ -3502,3 +3512,5 @@ const main = new (class {
     }
   }
 })();
+
+window.onload(() => { main.init(); });
