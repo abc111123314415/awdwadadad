@@ -614,10 +614,10 @@ const main = new (class {
           }
         })();
         this.screen = {
-            maxH: this.configs.maxScreenWidth,
+            maxH: this.configs.maxScreenHeigth,
             maxW: this.configs.maxScreenWidth,
-            H: maxH,
-            W: maxW
+            H: this.configs.maxScreenHeigth,
+            W: this.configs.maxScreenWidth
         };
         var hats = this.store.hats;
         var accessories = this.store.accessories;
