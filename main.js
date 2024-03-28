@@ -860,7 +860,20 @@ const main = new (class {
         this.pingSocketResponse = function () {};
       }
     })();
-    this.renderManager = new (class {})();
+    this.renderManager = new (class {
+      constructor () {
+        Object.defineProperty(this, "resolution", {
+          get () {
+            return window.devicePixelRatio
+          },
+          set (value) {
+            window.devicePixelRatio = value;
+          }
+        });
+      }
+      init () {
+      }
+    })();
   }
   init () {
     // ADD MSGPACK
