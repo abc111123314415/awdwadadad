@@ -195,17 +195,17 @@ const main = new (class {
             this.sortByPoints = function (a, b) {
               return parseFloat(b.points) - parseFloat(a.points);
             };
-            this.exports.hookTouchEvents = function (element, skipPrevent) {
+            this.hookTouchEvents = function (element, skipPrevent) {
               var preventDefault = !skipPrevent;
               var isHovering = false;
               var passive = false;
-              element.addEventListener("touchstart", module.exports.checkTrusted(touchStart), passive);
-              element.addEventListener("touchmove", module.exports.checkTrusted(touchMove), passive);
-              element.addEventListener("touchend", module.exports.checkTrusted(touchEnd), passive);
-              element.addEventListener("touchcancel", module.exports.checkTrusted(touchEnd), passive);
-              element.addEventListener("touchleave", module.exports.checkTrusted(touchEnd), passive);
+              element.addEventListener("touchstart", this.checkTrusted(touchStart), passive);
+              element.addEventListener("touchmove",this.checkTrusted(touchMove), passive);
+              element.addEventListener("touchend", this.checkTrusted(touchEnd), passive);
+              element.addEventListener("touchcancel", this.checkTrusted(touchEnd), passive);
+              element.addEventListener("touchleave", this.checkTrusted(touchEnd), passive);
               function touchStart(e) {
-                  module.exports.mousifyTouchEvent(e);
+                  this.mousifyTouchEvent(e);
                   window.setUsingTouch(true);
                   if (preventDefault) {
                       e.preventDefault();
@@ -216,13 +216,13 @@ const main = new (class {
                   isHovering = true;
               }
               function touchMove(e) {
-                  module.exports.mousifyTouchEvent(e);
+                  this.mousifyTouchEvent(e);
                   window.setUsingTouch(true);
                   if (preventDefault) {
                       e.preventDefault();
                       e.stopPropagation();
                   }
-                  if (module.exports.containsPoint(element, e.pageX, e.pageY)) {
+                  if (this.containsPoint(element, e.pageX, e.pageY)) {
                       if (!isHovering) {
                           if (element.onmouseover)
                               element.onmouseover(e);
@@ -237,7 +237,7 @@ const main = new (class {
                   }
               }
               function touchEnd(e) {
-                  module.exports.mousifyTouchEvent(e);
+                  this.mousifyTouchEvent(e);
                   window.setUsingTouch(true);
                   if (preventDefault) {
                       e.preventDefault();
@@ -338,16 +338,16 @@ const main = new (class {
                   element[key] = config[key];
               }
               if (element.onclick)
-                  element.onclick = module.exports.checkTrusted(element.onclick);
+                  element.onclick = this.checkTrusted(element.onclick);
               if (element.onmouseover)
-                  element.onmouseover = module.exports.checkTrusted(element.onmouseover);
+                  element.onmouseover = this.checkTrusted(element.onmouseover);
               if (element.onmouseout)
-                  element.onmouseout = module.exports.checkTrusted(element.onmouseout);
+                  element.onmouseout = this.checkTrusted(element.onmouseout);
               if (config.style) {
                   element.style.cssText = config.style;
               }
               if (config.hookTouch) {
-                  module.exports.hookTouchEvents(element);
+                  this.hookTouchEvents(element);
               }
               if (config.parent) {
                   config.parent.appendChild(element);
@@ -368,7 +368,7 @@ const main = new (class {
             };
             this.checkTrusted = function(callback) {
               return function(ev) {
-                  if (ev && ev instanceof Event && module.exports.eventIsTrusted(ev)) {
+                  if (ev && ev instanceof Event && this.eventIsTrusted(ev)) {
                       callback(ev);
                   }
               }
