@@ -862,12 +862,25 @@ const main = new (class {
     })();
     this.renderManager = new (class {
       constructor () {
-        Object.defineProperty(this, "resolution", {
-          get () {
-            return window.devicePixelRatio
+        this.camera = {
+           x: 0, y: 0
+        };
+        Object.defineProperties(this, {
+          resolution: {
+            get () {
+              return window.devicePixelRatio
+            },
+            set (value) {
+              window.devicePixelRatio = value;
+            }
           },
-          set (value) {
-            window.devicePixelRatio = value;
+          offset: {
+            get () {
+              return {
+                x: this.camera.x - 1920/2
+                y: this.camera.y - 1080/2
+              }
+            }
           }
         });
       }
