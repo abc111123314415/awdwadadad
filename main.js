@@ -124,8 +124,6 @@ const main = new (class {
         var storeMenu = document.getElementById("storeMenu");
         var storeHolder = document.getElementById("storeHolder");
         var noticationDisplay = document.getElementById("noticationDisplay");
-        var hats = this.store.hats;
-        var accessories = this.store.accessories;
 
         // UTILITIES
         this.UTILS = new (class {
@@ -621,6 +619,8 @@ const main = new (class {
             H: maxH,
             W: maxW
         };
+        var hats = this.store.hats;
+        var accessories = this.store.accessories;
         // GAMEOBJECT
         this.gameObject = class {
           constructor (sid) {
