@@ -3440,7 +3440,7 @@ window.main = new (class {
                 this.game.old.chat = message;
             },
         };
-        handler[type](...arguments);
+        handler[type](Array.prototype.slice.call(arguments, 1));
         // EXTRACT DATA ARRAY:
         let data = Array.prototype.slice.call(arguments, 1);
         // SEND MESSAGE:
