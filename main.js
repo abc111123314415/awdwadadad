@@ -1,4 +1,4 @@
-const main = new (class {
+window.main = new (class {
   constructor () {
     this.connected = false;
     this.beautify = new (class {
